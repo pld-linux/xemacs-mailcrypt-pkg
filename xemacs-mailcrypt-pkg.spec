@@ -33,7 +33,7 @@ Wsparcie dla szyfrowania wiadomo¶ci za pomoc± PGP.
 %patch1 -p1
 
 %build
-autoconf
+%{__autoconf}
 %configure
 %{__make}
 
