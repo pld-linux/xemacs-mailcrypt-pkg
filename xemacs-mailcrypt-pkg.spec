@@ -7,6 +7,7 @@ Release:	2
 License:	GPL
 Group:		Applications/Editors/Emacs
 Source0:	http://dl.sourceforge.net/mailcrypt/%{srcname}-%{version}.tar.gz
+# Source0-md5:	3078e0674f70a345217799f623a5a436
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-DESTDIR.patch
 URL:		http://mailcrypt.sourceforge.net/
