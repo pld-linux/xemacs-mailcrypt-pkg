@@ -1,44 +1,50 @@
 Summary:	Support for messaging encryption with PGP
-Summary(pl):	Support for messaging encryption with PGP
+Summary(pl):	Wsparcie dla szybfrowania wiadomo¶ci za pomoc± PGP
 Name:		xemacs-mailcrypt-pkg
 %define 	srcname	mailcrypt
-Version:	2.07
+Version:	3.5.5
 Release:	1
 License:	GPL
 Group:		Applications/Editors/Emacs
 Group(pl):	Aplikacje/Edytory/Emacs
-Source0:	ftp://ftp.xemacs.org/xemacs/packages/%{srcname}-%{version}-pkg.tar.gz
+Source0:	http://prdownloads.sourceforge.net/mailcrypt/%{srcname}-%{version}.tar.gz
 Patch0:		xemacs-mailcrypt-pkg-info.patch
-URL:		http://www.xemacs.org/
+URL:		http://mailcrypt.sourceforge.net/
 BuildArch:	noarch
 Conflicts:	xemacs-sumo
 Requires:	xemacs
 Requires:	xemacs-mail-lib-pkg
 Requires:	xemacs-fsf-compat-pkg
 Requires:	xemacs-base-pkg
+BuildRequires:	xemacs
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
+Support for messaging encryption with PGP.
 
-%description -l pl 
+%description -l pl
+Wsparcie dla szyfrowania wiadomo¶ci za pomoc± PGP.
 
 %prep
-%setup -q -c
-%patch0 -p1
+%setup -q -n %{srcname}-%{version}
+%patch0 -p3
 
 %build
-(cd man/mailcrypt; awk '/^\\input texinfo/ {print FILENAME}' * | xargs makeinfo)
+%configure
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_datadir}/xemacs-packages,%{_infodir}}
+install -d $RPM_BUILD_ROOT%{_datadir}/xemacs-packages/lisp/mailcrypt
+install -d $RPM_BUILD_ROOT%{_datadir}/emacs
+install -d $RPM_BUILD_ROOT%{_infodir}
 
-cp -a * $RPM_BUILD_ROOT%{_datadir}/xemacs-packages
-mv -f  $RPM_BUILD_ROOT%{_datadir}/xemacs-packages/info/*.info* $RPM_BUILD_ROOT%{_infodir}
-rm -fr $RPM_BUILD_ROOT%{_datadir}/xemacs-packages/info
+ln -s $RPM_BUILD_ROOT%{_datadir}/xemacs-packages/lisp/mailcrypt \
+	$RPM_BUILD_ROOT%{_datadir}/emacs/site-lisp
 
-gzip -9nf $RPM_BUILD_ROOT%{_infodir}/*.info* \
-	lisp/mailcrypt/README.gpg lisp/mailcrypt/README lisp/mailcrypt/ONEWS lisp/mailcrypt/NEWS lisp/mailcrypt/INSTALL lisp/mailcrypt/ChangeLog 
+%{makeinstall}
+
+gzip -9nf README.gpg README ONEWS NEWS INSTALL ChangeLog 
 
 %clean
 rm -fr $RPM_BUILD_ROOT
@@ -51,7 +57,7 @@ rm -fr $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc lisp/mailcrypt/README.gpg.gz lisp/mailcrypt/README.gz lisp/mailcrypt/ONEWS.gz lisp/mailcrypt/NEWS.gz lisp/mailcrypt/INSTALL.gz lisp/mailcrypt/ChangeLog.gz 
-%{_infodir}/*
+%doc *.gz
+%{_infodir}/mailcrypt*
 %dir %{_datadir}/xemacs-packages/lisp/*
 %{_datadir}/xemacs-packages/lisp/*/*.elc
