@@ -44,7 +44,6 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT \
 	lispdir=%{_datadir}/xemacs-packages/lisp/mailcrypt
 
-gzip -9nf README.gpg README ONEWS NEWS INSTALL ChangeLog
 
 # remove .el file if corresponding .elc file exists
 find $RPM_BUILD_ROOT -type f -name "*.el" | while read i; do test ! -f ${i}c || rm -f $i; done
@@ -60,7 +59,7 @@ rm -fr $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc *.gz
+%doc README.gpg README ONEWS NEWS INSTALL ChangeLog
 %{_infodir}/*info*
 %dir %{_datadir}/xemacs-packages/lisp/mailcrypt
 %{_datadir}/xemacs-packages/lisp/mailcrypt/*.el*
