@@ -38,12 +38,10 @@ Wsparcie dla szyfrowania wiadomo¶ci za pomoc± PGP.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_datadir}/xemacs-packages/lisp/mailcrypt,%{_infodir}}
 
-%{__make} install DESTDIR=$RPM_BUILD_ROOT
-
-mv $RPM_BUILD_ROOT%{_datadir}/emacs/site-lisp/* \
-	$RPM_BUILD_ROOT%{_datadir}/xemacs-packages/lisp/mailcrypt
+%{__make} install \
+	DESTDIR=$RPM_BUILD_ROOT \
+	lispdir=%{_datadir}/xemacs-packages/lisp/mailcrypt
 
 gzip -9nf README.gpg README ONEWS NEWS INSTALL ChangeLog 
 
@@ -59,6 +57,6 @@ rm -fr $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc *.gz
-%{_infodir}/mailcrypt*
+%{_infodir}/*info*
 %dir %{_datadir}/xemacs-packages/lisp/mailcrypt
 %{_datadir}/xemacs-packages/lisp/mailcrypt/*.elc
