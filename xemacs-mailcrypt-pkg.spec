@@ -19,6 +19,7 @@ Requires:	xemacs-mail-lib-pkg
 Requires:	xemacs-fsf-compat-pkg
 Requires:	xemacs-base-pkg
 BuildRequires:	xemacs
+BuildRequires:	xemacs-mail-lib-pkg
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
