@@ -2,7 +2,7 @@ Summary:	Support for messaging encryption with PGP
 Summary(pl):	Support for messaging encryption with PGP
 Name:		xemacs-mailcrypt-pkg
 %define 	srcname	mailcrypt
-Version:	2.06
+Version:	2.07
 Release:	1
 License:	GPL
 Group:		Applications/Editors/Emacs
