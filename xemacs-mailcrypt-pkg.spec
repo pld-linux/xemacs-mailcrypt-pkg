@@ -42,7 +42,7 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT \
 	lispdir=%{_datadir}/xemacs-packages/lisp/mailcrypt
 
-gzip -9nf README.gpg README ONEWS NEWS INSTALL ChangeLog 
+gzip -9nf README.gpg README ONEWS NEWS INSTALL ChangeLog
 
 %clean
 rm -fr $RPM_BUILD_ROOT
