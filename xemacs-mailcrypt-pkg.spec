@@ -6,8 +6,6 @@ Version:	3.5.6
 Release:	1
 License:	GPL
 Group:		Applications/Editors/Emacs
-Group(de):	Applikationen/Editors/Emacs
-Group(pl):	Aplikacje/Edytory/Emacs
 Source0:	http://prdownloads.sourceforge.net/mailcrypt/%{srcname}-%{version}.tar.gz
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-DESTDIR.patch
