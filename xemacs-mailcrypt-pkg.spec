@@ -3,7 +3,7 @@ Summary(pl):	Wsparcie dla szybfrowania wiadomo¶ci za pomoc± PGP
 Name:		xemacs-mailcrypt-pkg
 %define 	srcname	mailcrypt
 Version:	3.5.6
-Release:	1
+Release:	2
 License:	GPL
 Group:		Applications/Editors/Emacs
 Source0:	http://prdownloads.sourceforge.net/mailcrypt/%{srcname}-%{version}.tar.gz
@@ -17,6 +17,7 @@ Requires:	xemacs-mail-lib-pkg
 Requires:	xemacs-fsf-compat-pkg
 Requires:	xemacs-base-pkg
 BuildRequires:	xemacs
+BuildRequires:	autoconf
 BuildRequires:	xemacs-mail-lib-pkg
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -32,6 +33,7 @@ Wsparcie dla szyfrowania wiadomo¶ci za pomoc± PGP.
 %patch1 -p1
 
 %build
+autoconf
 %configure
 %{__make}
 
