@@ -6,9 +6,11 @@ Version:	3.5.5
 Release:	1
 License:	GPL
 Group:		Applications/Editors/Emacs
+Group(de):	Applikationen/Editors/Emacs
 Group(pl):	Aplikacje/Edytory/Emacs
 Source0:	http://prdownloads.sourceforge.net/mailcrypt/%{srcname}-%{version}.tar.gz
-Patch0:		xemacs-mailcrypt-pkg-info.patch
+Patch0:		%{name}-info.patch
+Patch1:		%{name}-DESTDIR.patch
 URL:		http://mailcrypt.sourceforge.net/
 BuildArch:	noarch
 Conflicts:	xemacs-sumo
@@ -27,7 +29,8 @@ Wsparcie dla szyfrowania wiadomo¶ci za pomoc± PGP.
 
 %prep
 %setup -q -n %{srcname}-%{version}
-%patch0 -p3
+%patch0 -p1
+%patch1 -p1
 
 %build
 %configure
@@ -35,14 +38,12 @@ Wsparcie dla szyfrowania wiadomo¶ci za pomoc± PGP.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_datadir}/xemacs-packages/lisp/mailcrypt
-install -d $RPM_BUILD_ROOT%{_datadir}/emacs
-install -d $RPM_BUILD_ROOT%{_infodir}
+install -d $RPM_BUILD_ROOT{%{_datadir}/xemacs-packages/lisp/mailcrypt,%{_infodir}}
 
-ln -s $RPM_BUILD_ROOT%{_datadir}/xemacs-packages/lisp/mailcrypt \
-	$RPM_BUILD_ROOT%{_datadir}/emacs/site-lisp
+%{__make} install DESTDIR=$RPM_BUILD_ROOT
 
-%{makeinstall}
+mv $RPM_BUILD_ROOT%{_datadir}/emacs/site-lisp/* \
+	$RPM_BUILD_ROOT%{_datadir}/xemacs-packages/lisp/mailcrypt
 
 gzip -9nf README.gpg README ONEWS NEWS INSTALL ChangeLog 
 
@@ -59,5 +60,5 @@ rm -fr $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc *.gz
 %{_infodir}/mailcrypt*
-%dir %{_datadir}/xemacs-packages/lisp/*
-%{_datadir}/xemacs-packages/lisp/*/*.elc
+%dir %{_datadir}/xemacs-packages/lisp/mailcrypt
+%{_datadir}/xemacs-packages/lisp/mailcrypt/*.elc
