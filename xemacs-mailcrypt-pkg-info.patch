@@ -1,0 +1,25 @@
+diff -Nur xemacs-mailcrypt-pkg-2.04/man/mailcrypt/mailcrypt.texi xemacs-mailcrypt-pkg-2.04.new/man/mailcrypt/mailcrypt.texi
+--- xemacs-mailcrypt-pkg-2.04/man/mailcrypt/mailcrypt.texi	Sat Dec 11 17:56:16 1999
++++ xemacs-mailcrypt-pkg-2.04.new/man/mailcrypt/mailcrypt.texi	Sun Mar 26 14:19:00 2000
+@@ -7,10 +7,20 @@
+ @c @singlespace
+ 
+ @c %**start of header
+-@setfilename mailcrypt.info
++@setfilename ../../info/mailcrypt.info
+ @settitle @value{TITLE}
+ @setchapternewpage off
+ @c %**end of header
++
++@ifinfo
++@format
++@dircategory XEmacs Editor:
++@direntry
++* Mailcrypt: (mailcrypt).		An EMACS Interface to PGP
++@end direntry
++@end format
++@end ifinfo
++
+ 
+ @syncodeindex ky cp
+ @syncodeindex vr cp
