@@ -12,6 +12,7 @@ Patch0:		%{name}-info.patch
 Patch1:		%{name}-DESTDIR.patch
 URL:		http://mailcrypt.sourceforge.net/
 BuildRequires:	autoconf
+BuildRequires:	texinfo
 BuildRequires:	xemacs
 BuildRequires:	xemacs-mail-lib-pkg
 Requires:	xemacs
@@ -60,6 +61,6 @@ rm -fr $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc README.gpg README ONEWS NEWS INSTALL ChangeLog
-%{_infodir}/*info*
 %dir %{_datadir}/xemacs-packages/lisp/mailcrypt
 %{_datadir}/xemacs-packages/lisp/mailcrypt/*.el*
+%{_infodir}/*.info*
