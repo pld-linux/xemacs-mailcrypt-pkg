@@ -1,0 +1,61 @@
+diff -u mailcrypt-3.5.5/Makefile.in mailcrypt-3.5.5.new/Makefile.in
+--- mailcrypt-3.5.5/Makefile.in	Wed May 16 01:43:07 2001
++++ mailcrypt-3.5.5.new/Makefile.in	Wed May 16 01:44:24 2001
+@@ -9,13 +9,13 @@
+ exec_prefix = @exec_prefix@
+ 
+ # Shared directory for read-only data files
+-datadir = $(prefix)/share
++datadir = @datadir@
+ 
+ # Where to put the .el and .elc files
+ lispdir=$(datadir)/emacs/site-lisp
+ 
+ # Where to put the Info files
+-infodir=$(prefix)/info
++infodir=@infodir@
+ INFOFILES  = mailcrypt.info mailcrypt.info-1 mailcrypt.info-2
+ 
+ # Where to put the helper scripts
+@@ -59,33 +59,29 @@
+ 	$(EMACS) -batch $(EMACSFLAGS) -l $(srcdir)/load-path.hack \
+ 	  -f batch-byte-compile $<
+ 
+-all: $(OBJECTS)
++all: $(OBJECTS) info
+ 
+-install: all installdirs install-info $(bindir)
++install: all info installdirs install-info $(DESTDIR)$(bindir)
+ 	for f in $(SOURCES); do \
+-	  $(INSTALL_DATA) $(srcdir)/$$f $(lispdir); \
++	  $(INSTALL_DATA) $(srcdir)/$$f $(DESTDIR)$(lispdir); \
+ 	done;
+ 	for f in $(OBJECTS); do \
+-	  $(INSTALL_DATA) $$f $(lispdir); \
++	  $(INSTALL_DATA) $$f $(DESTDIR)$(lispdir); \
+ 	done;
+ 
+ # Make sure all installation directories actually exist
+ # by making them if necessary.
+ installdirs: mkinstalldirs
+-	$(srcdir)/mkinstalldirs $(lispdir) $(infodir) $(bindir)
++	$(srcdir)/mkinstalldirs $(DESTDIR)$(lispdir) $(DESTDIR)$(infodir) $(DESTDIR)$(bindir)
+ 
+ install-info: info
+ 	cd $(srcdir) && for file in $(INFOFILES); do\
+-	  $(INSTALL_DATA) $$file $(infodir)/$$file; \
++	  $(INSTALL_DATA) $$file $(DESTDIR)$(infodir)/$$file; \
+ 	done
+-	-$(INSTALL_INFO) --info-dir=$(infodir) \
+-	--entry="* Mailcrypt: (mailcrypt).       An Emacs/PGP interface" \
+-	mailcrypt.info
+ 
+ uninstall:
+-	-cd $(lispdir) && rm -f $(SOURCES) $(OBJECTS)
+-	-cd $(infodir) && rm -f $(INFOFILES)
+-	$(INSTALL_INFO) --remove --info-dir=$(infodir) mailcrypt.info
++	-cd $(DESTDIR)$(lispdir) && rm -f $(SOURCES) $(OBJECTS)
++	-cd $(DESTDIR)$(infodir) && rm -f $(INFOFILES)
+ 
+ info: $(INFOFILES)
+ 
