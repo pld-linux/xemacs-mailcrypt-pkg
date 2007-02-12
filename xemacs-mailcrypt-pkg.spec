@@ -1,5 +1,5 @@
 Summary:	Support for messaging encryption with PGP
-Summary(pl):	Wsparcie dla szyfrowania wiadomo¶ci za pomoc± PGP
+Summary(pl.UTF-8):   Wsparcie dla szyfrowania wiadomoÅ›ci za pomocÄ… PGP
 Name:		xemacs-mailcrypt-pkg
 %define 	srcname	mailcrypt
 Version:	3.5.6
@@ -26,8 +26,8 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %description
 Support for messaging encryption with PGP.
 
-%description -l pl
-Wsparcie dla szyfrowania wiadomo¶ci za pomoc± PGP.
+%description -l pl.UTF-8
+Wsparcie dla szyfrowania wiadomoÅ›ci za pomocÄ… PGP.
 
 %prep
 %setup -q -n %{srcname}-%{version}
