@@ -1,5 +1,5 @@
 Summary:	Support for messaging encryption with PGP
-Summary(pl.UTF-8):   Wsparcie dla szyfrowania wiadomości za pomocą PGP
+Summary(pl.UTF-8):	Wsparcie dla szyfrowania wiadomości za pomocą PGP
 Name:		xemacs-mailcrypt-pkg
 %define 	srcname	mailcrypt
 Version:	3.5.6
