@@ -3,7 +3,7 @@ Summary(pl.UTF-8):	Wsparcie dla szyfrowania wiadomości za pomocą PGP
 Name:		xemacs-mailcrypt-pkg
 %define 	srcname	mailcrypt
 Version:	3.5.6
-Release:	3
+Release:	4
 License:	GPL
 Group:		Applications/Editors/Emacs
 Source0:	http://dl.sourceforge.net/mailcrypt/%{srcname}-%{version}.tar.gz
@@ -37,13 +37,15 @@ Wsparcie dla szyfrowania wiadomości za pomocą PGP.
 %build
 %{__autoconf}
 %configure
-%{__make}
+%{__make} -j1 \
+	MAKEINFO="%{_bindir}/makeinfo --no-split"
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%{__make} install \
+%{__make} -j1 install \
 	DESTDIR=$RPM_BUILD_ROOT \
+	INFOFILES=mailcrypt.info \
 	lispdir=%{_datadir}/xemacs-packages/lisp/mailcrypt
 
 # remove .el file if corresponding .elc file exists
