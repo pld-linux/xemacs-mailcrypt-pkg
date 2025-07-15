@@ -31,8 +31,8 @@ Wsparcie dla szyfrowania wiadomości za pomocą PGP.
 
 %prep
 %setup -q -n %{srcname}-%{version}
-%patch0 -p1
-%patch1 -p1
+%patch -P0 -p1
+%patch -P1 -p1
 
 %build
 %{__autoconf}
